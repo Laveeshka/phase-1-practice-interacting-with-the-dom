@@ -12,6 +12,8 @@ const coeur = document.querySelector('#heart');
 const pauseBtn = document.querySelector('#pause');
 const submitBtn = document.querySelector('#submit');
 const likes = document.querySelector('.likes');
+const comments = document.querySelector('.comments');
+const form = document.querySelector('#comment-form');
 let compte = 0;
 let likesObj = {}; //will store the number and count of likes
 let isPaused = false;
@@ -21,6 +23,8 @@ const myInterval = () => setInterval(startTimer, 1000);
 //As a user, I can manually increment and decrement the counter using the plus and minus buttons
 //As a user, I can "like" an individual number of the counter. I should see the count of the number of "likes" associated with that number displayed.
 //As a user, I can pause the counter which should pause the counter, disable all buttons except the pause button and switch the label on the button from "pause" to "resume"
+//As a user, I can click on the "restart" button to restart the counter and re-enable the buttons
+//As a user, I can leave comments on my gameplay
 function initialise(){
 
     myInterval();
@@ -75,6 +79,18 @@ function initialise(){
             isPaused = false;
         }
         
+    });
+
+    form.addEventListener("submit", e => {
+        //prevent default form functionality
+        e.preventDefault();
+        const input = document.querySelector('#comment-input');
+        console.log(input.value);
+        const p = document.createElement('p');
+        p.innerHTML = input.value;
+        console.log(comments);
+        comments.appendChild(p);
+        form.reset();
     });
 }
 
